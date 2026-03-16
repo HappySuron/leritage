@@ -16,25 +16,62 @@ public class Word : MonoBehaviour
     /// <param name="letterToCheck">Буква для проверки</param>
     public void CheckLetter(char letterToCheck)
     {
+        CheckLetter(letterToCheck, false);
+    }
+
+    public void CheckLetter(char letterToCheck, bool checkOnlyFirst)
+    {
         if (lettersContainer == null || lettersContainer.childCount == 0)
             return;
 
-        // Берем первую букву
-        Letter firstLetter = lettersContainer.GetChild(0).GetComponent<Letter>();
-        if (firstLetter == null) return;
-
-        if (firstLetter.GetChar() == letterToCheck)
+        if (checkOnlyFirst)
         {
-            firstLetter.RemoveLetter(); // совпало, удаляем
+            Letter firstLetter = lettersContainer.GetChild(0).GetComponent<Letter>();
+            if (firstLetter == null)
+                return;
 
-            // Проверяем через Invoke, чтобы Unity успела удалить объект
-            Invoke(nameof(CheckEmptyWord), 0.01f);
+            if (firstLetter.GetChar() == letterToCheck)
+            {
+                firstLetter.RemoveLetter();
+                Invoke(nameof(CheckEmptyWord), 0.01f);
+            }
+            else
+            {
+                firstLetter.HighlightWrong();
+            }
+
+            return;
         }
-        else
+
+        bool foundMatch = false;
+
+        for (int i = 0; i < lettersContainer.childCount; i++)
         {
-            firstLetter.HighlightWrong(); // не совпало, красим
+            Letter letter = lettersContainer.GetChild(i).GetComponent<Letter>();
+            if (letter == null) continue;
+
+            if (letter.GetChar() == letterToCheck)
+            {
+                letter.RemoveLetter();
+                foundMatch = true;
+            }
         }
+
+        if (!foundMatch)
+        {
+            for (int i = 0; i < lettersContainer.childCount; i++)
+            {
+                Letter letter = lettersContainer.GetChild(i).GetComponent<Letter>();
+                if (letter != null)
+                    letter.HighlightWrong();
+            }
+        }
+
+        Invoke(nameof(CheckEmptyWord), 0.01f);
     }
+
+
+    
 
     private void CheckEmptyWord()
     {
