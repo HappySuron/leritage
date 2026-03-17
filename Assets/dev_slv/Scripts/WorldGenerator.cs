@@ -1,13 +1,16 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
-public class WordGenerator : MonoBehaviour
+public class WorldGenerator : MonoBehaviour
 {
-    public static WordGenerator Instance; // Singleton
+    public static WorldGenerator Instance; // Singleton
 
     [Header("Prefabs")]
     public GameObject letterPrefab;
     public GameObject wordPrefab;
+
+    public GameObject enemyPrefab;
 
     [Header("Parent")]
     public Transform wordsParent; // По умолчанию, куда будут создаваться слова
@@ -65,10 +68,39 @@ public class WordGenerator : MonoBehaviour
         return newWord; // Возвращаем созданный объект
     }
 
+    public GameObject GenerateEnemyWithWord(GameObject enemyPrefab, Vector3 position, string word)
+    {
+        // создаем врага
+        GameObject enemyObj = Instantiate(enemyPrefab, position, Quaternion.identity);
+
+        // ищем точку для слова
+        Enemy enemy = enemyObj.GetComponent<Enemy>();
+        if (enemy == null)
+        {
+            Debug.LogError("На enemyPrefab нет скрипта Enemy!");
+            return enemyObj;
+        }
+
+        // генерим слово как дочерний объект
+        GameObject wordObj = GenerateWord(word, enemy.wordSpawnPoint);
+
+        // можно сохранить ссылку (если нужно)
+        enemy.SetWordObject(wordObj);
+        Word wordComponent = wordObj.GetComponent<Word>();
+        if (wordComponent != null)
+        {
+            wordComponent.SetOwner(enemy);
+            Debug.Log(enemy);
+        }
+        return enemyObj;
+    }
+
 
     void Start()
     {
-        this.GenerateWord("ZXC", wordsParent);
-        this.GenerateWord("ZASD", wordsParent);
+        //this.GenerateWord("ZXC", wordsParent);
+        //this.GenerateWord("ZASD", wordsParent);
+
+        this.GenerateEnemyWithWord(enemyPrefab, wordsParent.position, "ZXC");
     }
 }

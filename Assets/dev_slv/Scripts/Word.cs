@@ -4,10 +4,19 @@ public class Word : MonoBehaviour
 {
     public Transform lettersContainer;
 
+    public Enemy ownerEnemy; // 👈 ссылка на врага
+
     private void Awake()
     {
         if (lettersContainer == null)
             lettersContainer = transform.Find("LettersContainer");
+    }
+
+
+    public void SetOwner(Enemy enemy)
+    {
+        ownerEnemy = enemy;
+        Debug.Log(ownerEnemy);
     }
 
     /// <summary>
@@ -76,6 +85,11 @@ public class Word : MonoBehaviour
     private void CheckEmptyWord()
     {
         if (lettersContainer.childCount == 0)
+        {
+            if (ownerEnemy != null)
+                ownerEnemy.Die(); // 👈 убиваем врага
             Destroy(gameObject); // удаляем само слово
+        }
+            
     }
 }
