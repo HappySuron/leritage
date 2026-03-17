@@ -101,6 +101,10 @@ public class WorldGenerator : MonoBehaviour
         //this.GenerateWord("ZXC", wordsParent);
         //this.GenerateWord("ZASD", wordsParent);
 
-        this.GenerateEnemyWithWord(enemyPrefab, wordsParent.position, "ZXC");
+        //this.GenerateEnemyWithWord(enemyPrefab, wordsParent.position, "ZXC");
+        
+        GameObject enemyObj = this.GenerateEnemyWithWord(enemyPrefab, new Vector3(0, 0, 50), "IMTREX");
+        Enemy enemy = enemyObj.GetComponent<Enemy>();
+        enemy.MoveTo(new Vector3(0, 0, -100));
     }
 }
