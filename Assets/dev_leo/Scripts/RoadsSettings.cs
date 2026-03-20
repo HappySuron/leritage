@@ -26,6 +26,13 @@ public class RoadsSettings : MonoBehaviour
     [Tooltip("Префаб поверхности дороги (опционально).")]
     public GameObject roadSurfacePrefab;
 
+
+    // SLV EDITTED
+    // added the points in the beginning and end of the roads so we
+    // could spawn objects
+    [Header("Lane Points - slv")]
+    public bool createLanePoints = true;
+
     [Header("Editor")]
     public bool rebuildOnValidate = false;
 
@@ -55,7 +62,7 @@ public class RoadsSettings : MonoBehaviour
             var surface = Instantiate(roadSurfacePrefab, transform);
             surface.name = "Road_Surface";
             surface.transform.localPosition = new Vector3(0f, 0f, 0f);
-            surface.transform.localRotation = Quaternion.identity;
+            //surface.transform.localRotation = Quaternion.identity;
             surface.transform.localScale = new Vector3(roadWidth, 1f, roadLength);
         }
 
@@ -64,6 +71,9 @@ public class RoadsSettings : MonoBehaviour
             float x = -roadWidth * 0.5f + laneWidth * i;
             BuildDividerLine(i, x);
         }
+
+
+        BuildLanePoints();
 
         Debug.Log("RoadsSettings: Дорога построена.");
     }
@@ -100,4 +110,43 @@ public class RoadsSettings : MonoBehaviour
         if (!Application.isPlaying && rebuildOnValidate)
             BuildRoad();
     }
+
+
+    // SLV EDITTED
+
+    [ContextMenu("Build Lane Points")]
+    public void BuildLanePoints()
+    {
+        if (!createLanePoints) return;
+
+        float laneWidth = roadWidth / laneCount;
+
+        for (int i = 0; i < laneCount; i++)
+        {
+            // центр полосы
+            float centerX = -roadWidth * 0.5f + laneWidth * (i + 0.5f);
+
+            // начало дороги
+            Vector3 startPos = new Vector3(centerX, 0f, -roadLength * 0.5f);
+
+            // конец дороги
+            Vector3 endPos = new Vector3(centerX, 0f, roadLength * 0.5f);
+
+            // создаем объекты
+            CreatePoint($"Lane_{i}_Start", startPos);
+            CreatePoint($"Lane_{i}_End", endPos);
+        }
+
+        Debug.Log("Lane points созданы.");
+    }
+
+    private void CreatePoint(string name, Vector3 localPos)
+    {
+        GameObject point = new GameObject(name);
+        point.transform.parent = transform;
+        point.transform.localPosition = localPos;
+        point.transform.localRotation = Quaternion.identity;
+        point.transform.localScale = Vector3.one;
+    }
+
 }

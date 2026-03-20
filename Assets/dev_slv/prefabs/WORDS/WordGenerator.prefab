@@ -78,4 +78,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WordGenerator
   letterPrefab: {fileID: 3241601762648944150, guid: 1eef2c24e36ba5047997c7bad9a9a6bc, type: 3}
   wordPrefab: {fileID: 128339794994728045, guid: 425316cdcfadf42438ca2bca8239a297, type: 3}
+  enemyPrefab: {fileID: 4286346378680865440, guid: fbcb630bffc69d84892f0f0794aa1792, type: 3}
   wordsParent: {fileID: 8437525339401904187}
