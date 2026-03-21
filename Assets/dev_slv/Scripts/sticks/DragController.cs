@@ -72,7 +72,7 @@ public class DragController : MonoBehaviour
                         grabbedIndex = i;
 
                         grabbed.useGravity = false;
-                        grabbed.velocity = Vector3.zero;
+                        grabbed.linearVelocity = Vector3.zero;
                         grabbed.angularVelocity = Vector3.zero;
 
                         Vector3 lifted = grabbed.position;
