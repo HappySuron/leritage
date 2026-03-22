@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LetterRecognizerTesseract : MonoBehaviour
@@ -31,10 +32,14 @@ public class LetterRecognizerTesseract : MonoBehaviour
         {
             string result = Recognize();
 
-            if (!string.IsNullOrEmpty(result))
+            if (!string.IsNullOrEmpty(result)){
+                FoundLetter(Convert.ToChar(result));
                 Debug.Log("Распознан текст: " + result);
+            }
             else
+            {
                 Debug.Log("Ничего не распознано");
+            }
         }
     }
 
@@ -82,5 +87,11 @@ public class LetterRecognizerTesseract : MonoBehaviour
         recognizedText = recognizedText.Trim();
 
         return recognizedText.Length > 0 ? recognizedText[0].ToString() : null;
+    }
+
+    void FoundLetter(char letter)
+    {
+        CheckLetterKeyboard.Instance.ChangeLetterLevel(letter, 1);
+        CheckLetterKeyboard.Instance.CheckLetterInAllWords(letter);
     }
 }

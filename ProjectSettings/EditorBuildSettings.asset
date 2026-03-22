@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/dev_den/UI/Menu.unity
+    guid: 6687d8cc6820b3c4db0e0330a45eeebc
+  - enabled: 1
     path: Assets/dev_slv/ForMergingTest_slv.unity
     guid: 8e3cf7fbeb3ed7949be438a0ecd71336
   m_configObjects: {}

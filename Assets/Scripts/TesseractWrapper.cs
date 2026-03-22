@@ -20,7 +20,11 @@ public class TesseractWrapper
     private IntPtr _tessHandle;
     private Texture2D _highlightedTexture;
     private string _errorMsg;
-    private const float MinimumConfidence = 60;
+
+    // changed by slv --
+    //private const float MinimumConfidence = 60;
+    private const float MinimumConfidence = 45;
+    // -- slv
 
     [DllImport(TesseractDllName)]
     private static extern IntPtr TessVersion();

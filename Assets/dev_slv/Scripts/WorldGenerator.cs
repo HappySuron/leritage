@@ -103,8 +103,8 @@ public class WorldGenerator : MonoBehaviour
 
         //this.GenerateEnemyWithWord(enemyPrefab, wordsParent.position, "ZXC");
         
-        GameObject enemyObj = this.GenerateEnemyWithWord(enemyPrefab, new Vector3(0, 0, 50), "IMTREX");
-        Enemy enemy = enemyObj.GetComponent<Enemy>();
-        enemy.MoveTo(new Vector3(0, 0, -100));
+        // GameObject enemyObj = this.GenerateEnemyWithWord(enemyPrefab, new Vector3(0, 0, 50), "IMTREX");
+        // Enemy enemy = enemyObj.GetComponent<Enemy>();
+        // enemy.MoveTo(new Vector3(0, 0, -100));
     }
 }

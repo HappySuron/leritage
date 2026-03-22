@@ -74,8 +74,10 @@ public class KeyboardSettings : MonoBehaviour
 
                 key.name = GetKeyName(keyChar, row, col);
                 key.transform.localPosition = localPos;
-                key.transform.localRotation = Quaternion.identity;
-                key.transform.localScale = Vector3.one;
+                key.transform.localRotation = Quaternion.Euler(180f, 0f, 0f);
+                //key.transform.localScale = Vector3.one;
+                key.transform.localScale = new Vector3(keyWidth, keyHeight, 1f);
+                
 
                 // Если есть компонент TextMeshPro или Text, можно проставить символ.
                 var text = key.GetComponentInChildren<UnityEngine.UI.Text>();
