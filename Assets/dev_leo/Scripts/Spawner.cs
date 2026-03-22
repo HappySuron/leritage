@@ -41,6 +41,11 @@ public class Spawner : MonoBehaviour
         // Параметры для ограничения количества спавнов в волне
         public bool limitSpawns = false;
         public int maxSpawnsInWave = 10;
+
+        // added by slv --
+        public bool avoidLetterRepeats = false;
+        // -- slv
+
     }
 
     [SerializeField] private List<SpawnLine> spawnLines = new List<SpawnLine>();
@@ -50,6 +55,8 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private bool autoCreateDefaultLetterGroups = true;
     [SerializeField] private bool loopWaves = true;
+
+
 
     private float waveTimer = 0f;
     private int currentWaveIndex = 0;
@@ -290,13 +297,27 @@ public class Spawner : MonoBehaviour
             return;
         }
 
-        GameObject spawnedObject = Instantiate(prefabData.prefab, line.spawnPoint.position, line.spawnPoint.rotation);
+        // commented by slv --
+        //GameObject spawnedObject = Instantiate(prefabData.prefab, line.spawnPoint.position, line.spawnPoint.rotation);
+        // -- slv
+
+        // added by slv --
+        string word = GetRandomWordForWave(wave);
+        GameObject spawnedObject = WorldGenerator.Instance.GenerateEnemyWithWord(
+        prefabData.prefab,
+        line.spawnPoint.position,
+        word
+        );
+        // -- slv
         ApplyInitialSpeed(spawnedObject, prefabData.initialSpeed);
-
+        
         char letter = GetRandomLetterForWave(wave);
-        AssignLetterToObject(spawnedObject, letter);
 
-        Debug.Log($"Спавнен объект '{spawnedObject.name}' на линии {lineIndex} с буквой '{letter}' ({wave.waveName}).");
+        //commented by slv --
+        //AssignLetterToObject(spawnedObject, letter);
+
+        //Debug.Log($"Спавнен объект '{spawnedObject.name}' на линии {lineIndex} с буквой '{letter}' ({wave.waveName}).");
+        // --slv
     }
 
     private char GetRandomLetterForWave(WaveDefinition wave)
@@ -376,6 +397,60 @@ public class Spawner : MonoBehaviour
         else
             Debug.LogWarning("Нет настроенных волн для ручного спавна.");
     }
+
+
+    // added by slv --
+    private string GetRandomWordForWave(WaveDefinition wave)
+    {
+        List<char> letterPool = new List<char>();
+
+        // Собираем буквы из нужных групп
+        if (wave.useAllLetterGroups || wave.letterGroupNames.Count == 0)
+        {
+            foreach (LetterGroup group in letterGroups)
+                letterPool.AddRange(group.letters);
+        }
+        else
+        {
+            foreach (string groupName in wave.letterGroupNames)
+            {
+                LetterGroup group = letterGroups.Find(x => x.groupName == groupName);
+                if (group != null)
+                    letterPool.AddRange(group.letters);
+                else
+                    Debug.LogWarning($"Группа букв '{groupName}' не найдена для волны '{wave.waveName}'.");
+            }
+        }
+
+        if (letterPool.Count == 0)
+        {
+            Debug.LogWarning("Пул букв пуст, используем дефолтный алфавит A-Z.");
+            for (char c = 'A'; c <= 'Z'; c++)
+                letterPool.Add(c);
+        }
+
+        int wordLength = Random.Range(2, 3);
+
+        // Если включён флаг "без повторов", ограничиваем длину слов пулом
+        if (wave.avoidLetterRepeats && wordLength > letterPool.Count)
+            wordLength = letterPool.Count;
+
+        List<char> availableLetters = new List<char>(letterPool);
+        char[] chars = new char[wordLength];
+
+        for (int i = 0; i < wordLength; i++)
+        {
+            int index = Random.Range(0, availableLetters.Count);
+            chars[i] = availableLetters[index];
+
+            if (wave.avoidLetterRepeats)
+                availableLetters.RemoveAt(index); // удаляем, чтобы буква не повторилась
+        }
+
+        return new string(chars);
+    }
+        // -- slv
+
 }
 
 public interface ILetterReceiver
