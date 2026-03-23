@@ -1659,6 +1659,89 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539715672}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &547827341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 547827343}
+  - component: {fileID: 547827342}
+  m_Layer: 0
+  m_Name: Spawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &547827342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547827341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de68b85935923aa4898664bdfb5a6470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spawner
+  spawnLines:
+  - spawnPoint: {fileID: 638941114}
+  - spawnPoint: {fileID: 1681600258}
+  - spawnPoint: {fileID: 2094678610}
+  prefabs:
+  - prefab: {fileID: 250776451061366186, guid: 55469833ca843564dbf79249cad86615, type: 3}
+    initialSpeed: {x: 0, y: 0, z: -5}
+  letterGroups:
+  - groupName: Easy
+    letters: 410042004300
+  waves:
+  - waveName: First
+    useAllLetterGroups: 0
+    letterGroupNames:
+    - Easy
+    spawnLineIndices: 0000000002000000
+    spawnInterval: 2
+    repeatWave: 0
+    randomizeSpawnLines: 0
+    minSpawnLines: 1
+    maxSpawnLines: 3
+    limitSpawns: 1
+    maxSpawnsInWave: 3
+    avoidLetterRepeats: 0
+  - waveName: Second
+    useAllLetterGroups: 0
+    letterGroupNames:
+    - Easy
+    spawnLineIndices: 00000000
+    spawnInterval: 2
+    repeatWave: 0
+    randomizeSpawnLines: 0
+    minSpawnLines: 1
+    maxSpawnLines: 3
+    limitSpawns: 1
+    maxSpawnsInWave: 3
+    avoidLetterRepeats: 0
+  autoCreateDefaultLetterGroups: 0
+  loopWaves: 0
+--- !u!4 &547827343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547827341}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &638941113
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,7 +2255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 854821782}
-  - component: {fileID: 854821781}
+  - component: {fileID: 854821783}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -2180,55 +2263,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &854821781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854821780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de68b85935923aa4898664bdfb5a6470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  spawnLines:
-  - spawnPoint: {fileID: 638941114}
-  - spawnPoint: {fileID: 1681600258}
-  - spawnPoint: {fileID: 2094678610}
-  prefabs:
-  - prefab: {fileID: 250776451061366186, guid: 55469833ca843564dbf79249cad86615, type: 3}
-    initialSpeed: {x: 0, y: 0, z: -5}
-  letterGroups:
-  - groupName: Easy
-    letters: 410042004300
-  waves:
-  - waveName: First
-    useAllLetterGroups: 0
-    letterGroupNames:
-    - Easy
-    spawnLineIndices: 0000000002000000
-    spawnInterval: 2
-    repeatWave: 0
-    randomizeSpawnLines: 0
-    minSpawnLines: 1
-    maxSpawnLines: 3
-    limitSpawns: 1
-    maxSpawnsInWave: 3
-  - waveName: Second
-    useAllLetterGroups: 0
-    letterGroupNames:
-    - Easy
-    spawnLineIndices: 00000000
-    spawnInterval: 2
-    repeatWave: 0
-    randomizeSpawnLines: 0
-    minSpawnLines: 1
-    maxSpawnLines: 3
-    limitSpawns: 1
-    maxSpawnsInWave: 3
-  autoCreateDefaultLetterGroups: 0
-  loopWaves: 0
 --- !u!4 &854821782
 Transform:
   m_ObjectHideFlags: 0
@@ -2244,6 +2278,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &854821783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854821780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bf60f146b173849b5ac02b08461c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveSpawner
+  spawnLines:
+  - spawnPoint: {fileID: 638941114}
+  - spawnPoint: {fileID: 1681600258}
+  - spawnPoint: {fileID: 2094678610}
+  waves:
+  - waveName: first
+    enemyPrefabs:
+    - prefab: {fileID: 250776451061366186, guid: 55469833ca843564dbf79249cad86615, type: 3}
+      initialSpeed: {x: 0, y: 0, z: -5}
+    spawnLineIndices: 000000000100000002000000
+    spawnInterval: 2
+    repeatWave: 0
+    randomizeSpawnLines: 1
+    minSpawnLines: 0
+    maxSpawnLines: 3
+    limitSpawns: 1
+    maxSpawnsInWave: 3
+  loopWaves: 1
+  autoStartOnAwake: 1
 --- !u!1 &992006723
 GameObject:
   m_ObjectHideFlags: 0
@@ -3783,6 +3848,7 @@ MonoBehaviour:
   dividerWidth: 0.501
   dividerThickness: 0.05
   roadSurfacePrefab: {fileID: 0}
+  createLanePoints: 1
   rebuildOnValidate: 0
 --- !u!4 &1827154988
 Transform:
@@ -4321,3 +4387,4 @@ SceneRoots:
   - {fileID: 1681600258}
   - {fileID: 2094678610}
   - {fileID: 854821782}
+  - {fileID: 547827343}
