@@ -19,6 +19,13 @@ public class WaveSpawner : MonoBehaviour
     }
 
     [System.Serializable]
+    public class LetterGroup
+    {
+        public string groupName = "Group";
+        public List<char> letters = new List<char>();
+    }
+
+    [System.Serializable]
     public class WaveDefinition
     {
         public string waveName = "Wave";
@@ -31,10 +38,15 @@ public class WaveSpawner : MonoBehaviour
         public int maxSpawnLines = 3;
         public bool limitSpawns = false;
         public int maxSpawnsInWave = 10;
+        public bool avoidLetterRepeats = false;
+        public bool useAllLetterGroups = true;
+        public List<string> letterGroupNames = new List<string>();
+        // public List<LetterGroup> letterGroups = new List<LetterGroup>();
     }
 
     [SerializeField] private List<SpawnLine> spawnLines = new List<SpawnLine>();
     [SerializeField] private List<WaveDefinition> waves = new List<WaveDefinition>();
+    [SerializeField] private List<LetterGroup> letterGroups = new List<LetterGroup>();
     [SerializeField] private bool loopWaves = true;
     [SerializeField] private bool autoStartOnAwake = false;
 
@@ -261,7 +273,13 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
-        GameObject spawnedObject = Instantiate(prefabData.prefab, line.spawnPoint.position, line.spawnPoint.rotation);
+        // GameObject spawnedObject = Instantiate(prefabData.prefab, line.spawnPoint.position, line.spawnPoint.rotation);
+        string word = GetRandomWordForWave(wave);
+        GameObject spawnedObject = WorldGenerator.Instance.GenerateEnemyWithWord(
+        prefabData.prefab,
+        line.spawnPoint.position,
+        word
+        );
         ApplyInitialSpeed(spawnedObject, prefabData.initialSpeed);
     }
 
@@ -286,4 +304,56 @@ public class WaveSpawner : MonoBehaviour
             Debug.LogWarning($"Объект {obj.name} не содержит Rigidbody или Rigidbody2D. Скорость не установлена.");
         }
     }
+
+        // added by slv --
+    private string GetRandomWordForWave(WaveDefinition wave)
+    {
+        List<char> letterPool = new List<char>();
+
+        // Собираем буквы из нужных групп
+        if (wave.useAllLetterGroups || wave.letterGroupNames.Count == 0)
+        {
+            foreach (LetterGroup group in letterGroups)
+                letterPool.AddRange(group.letters);
+        }
+        else
+        {
+            foreach (string groupName in wave.letterGroupNames)
+            {
+                LetterGroup group = letterGroups.Find(x => x.groupName == groupName);
+                if (group != null)
+                    letterPool.AddRange(group.letters);
+                else
+                    Debug.LogWarning($"Группа букв '{groupName}' не найдена для волны '{wave.waveName}'.");
+            }
+        }
+
+        if (letterPool.Count == 0)
+        {
+            Debug.LogWarning("Пул букв пуст, используем дефолтный алфавит A-Z.");
+            for (char c = 'A'; c <= 'Z'; c++)
+                letterPool.Add(c);
+        }
+
+        int wordLength = Random.Range(2, 3);
+
+        // Если включён флаг "без повторов", ограничиваем длину слов пулом
+        if (wave.avoidLetterRepeats && wordLength > letterPool.Count)
+            wordLength = letterPool.Count;
+
+        List<char> availableLetters = new List<char>(letterPool);
+        char[] chars = new char[wordLength];
+
+        for (int i = 0; i < wordLength; i++)
+        {
+            int index = Random.Range(0, availableLetters.Count);
+            chars[i] = availableLetters[index];
+
+            if (wave.avoidLetterRepeats)
+                availableLetters.RemoveAt(index); // удаляем, чтобы буква не повторилась
+        }
+
+        return new string(chars);
+    }
+        // -- slv
 }
