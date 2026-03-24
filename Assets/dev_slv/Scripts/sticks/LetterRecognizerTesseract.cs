@@ -35,6 +35,9 @@ public class LetterRecognizerTesseract : MonoBehaviour
             if (!string.IsNullOrEmpty(result)){
                 FoundLetter(Convert.ToChar(result));
                 Debug.Log("Распознан текст: " + result);
+
+                // 👉 СБРОС ПАЛОЧЕК
+                DragController.Instance.ResetAllSticks();
             }
             else
             {

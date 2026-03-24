@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "leritage.slnx"
+    "dotnet.defaultSolution": "Leritage.slnx"
 }
