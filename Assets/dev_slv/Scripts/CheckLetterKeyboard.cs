@@ -14,7 +14,10 @@ public class CheckLetterKeyboard : MonoBehaviour
 
     [SerializeField] private List<LetterData> lettersList = new List<LetterData>();
 
-    public int levelToLearnLetter =5;
+    public int levelToLearnLetter = 5;
+
+    // 🔥 быстрый доступ к визуалам
+    private Dictionary<char, LetterKeyVisual> letterVisuals = new Dictionary<char, LetterKeyVisual>();
 
     private void Awake()
     {
@@ -22,7 +25,7 @@ public class CheckLetterKeyboard : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            InitializeLetters(); // заполняем список букв
+            InitializeLetters();
         }
         else
         {
@@ -32,13 +35,33 @@ public class CheckLetterKeyboard : MonoBehaviour
 
     private void InitializeLetters()
     {
-        if (lettersList.Count > 0) return; // не перезаписываем, если уже есть данные
+        if (lettersList.Count > 0) return;
 
-        lettersList = new List<LetterData>();
         for (char c = 'A'; c <= 'Z'; c++)
         {
             lettersList.Add(new LetterData { letter = c, value = 0 });
         }
+    }
+
+    // 🔥 регистрация кнопок
+    public void RegisterKey(LetterKeyVisual key)
+    {
+        char upper = char.ToUpper(key.Letter);
+
+        if (!letterVisuals.ContainsKey(upper))
+        {
+            letterVisuals.Add(upper, key);
+        }
+
+        // сразу обновляем визуал
+        int level = GetLetterLevel(upper);
+        key.UpdateVisual(level, levelToLearnLetter);
+    }
+
+    public int GetLetterLevel(char letter)
+    {
+        LetterData data = lettersList.Find(x => x.letter == char.ToUpper(letter));
+        return data != null ? data.value : 0;
     }
 
     void Update()
@@ -63,13 +86,20 @@ public class CheckLetterKeyboard : MonoBehaviour
         }
     }
 
-    public void CheckLetterInAllWords(char letter)
+    public bool CheckLetterInAllWords(char letter)
     {
+        bool found = false;
+
         Word[] allWords = Object.FindObjectsByType<Word>(FindObjectsSortMode.None);
         foreach (Word w in allWords)
         {
-            w.CheckLetter(letter);
+            if (w.CheckLetter(letter))  // предполагаем, что CheckLetter теперь возвращает bool
+            {
+                found = true;
+            }
         }
+
+        return found;
     }
 
     public void LearnLetter(char letter, int value)
@@ -79,23 +109,29 @@ public class CheckLetterKeyboard : MonoBehaviour
 
         if (data == null)
         {
-            lettersList.Add(new LetterData { letter = upperLetter, value = value });
+            data = new LetterData { letter = upperLetter, value = value };
+            lettersList.Add(data);
         }
         else
         {
             data.value = value;
         }
+
+        UpdateLetterVisual(upperLetter, data.value);
     }
 
     public void ForgetLetter(char letter)
     {
-        lettersList.RemoveAll(x => x.letter == char.ToUpper(letter));
+        char upper = char.ToUpper(letter);
+        lettersList.RemoveAll(x => x.letter == upper);
+
+        UpdateLetterVisual(upper, 0);
     }
 
     public bool IsLetterAvailable(char letter)
     {
         LetterData data = lettersList.Find(x => x.letter == char.ToUpper(letter));
-        return data != null && data.value > 5;
+        return data != null && data.value >= levelToLearnLetter;
     }
 
     public void ChangeLetterLevel(char letter, int levelChange)
@@ -105,12 +141,26 @@ public class CheckLetterKeyboard : MonoBehaviour
 
         if (data == null)
         {
-            // Буквы ещё нет — добавляем с уровнем 1
-            lettersList.Add(new LetterData { letter = upperLetter, value = 1 });
+            data = new LetterData { letter = upperLetter, value = 1 };
+            lettersList.Add(data);
         }
         else
         {
             data.value += levelChange;
+        }
+
+        // 🔥 защита от отрицательных значений
+        data.value = Mathf.Max(0, data.value);
+
+        UpdateLetterVisual(upperLetter, data.value);
+    }
+
+    // 🔥 обновление визуала без FindObjects
+    private void UpdateLetterVisual(char letter, int level)
+    {
+        if (letterVisuals.TryGetValue(letter, out var key))
+        {
+            key.UpdateVisual(level, levelToLearnLetter);
         }
     }
 }
