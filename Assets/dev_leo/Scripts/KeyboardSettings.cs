@@ -73,6 +73,13 @@ public class KeyboardSettings : MonoBehaviour
                     continue;
                 }
 
+                // 🔥 НОВОЕ — записываем букву в скрипт
+                var keyVisual = key.GetComponent<LetterKeyVisual>();
+                if (keyVisual != null)
+                {
+                    keyVisual.SetLetter(keyChar);
+                }
+
                 key.name = GetKeyName(keyChar, row, col);
                 key.transform.localPosition = localPos;
                 key.transform.localRotation = Quaternion.Euler(0f, -180f, 0f);
