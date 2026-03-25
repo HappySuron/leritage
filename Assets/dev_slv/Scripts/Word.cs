@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Word : MonoBehaviour
 {
-    public AudioClip[] dinosaurDeathClips; // звуки смерти динозавра
+
 
     public Transform lettersContainer;
 
@@ -96,7 +96,7 @@ public class Word : MonoBehaviour
                 
                 ownerEnemy.Die(); // 👈 убиваем врага
             Destroy(gameObject); // удаляем само слово
-            AudioManager.instance.PlaySoundFXClip(dinosaurDeathClips, transform, 1f); // звук смерти
+            
         }
             
     }
