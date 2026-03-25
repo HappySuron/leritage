@@ -13,7 +13,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     void Update()
     {
         transform.localScale = Vector3.Lerp(
-            transform.localScale, _targetScale, Time.deltaTime * speed);
+            transform.localScale, _targetScale, Time.unscaledDeltaTime * speed);
     }
 
     public void OnPointerEnter(PointerEventData e) => 
