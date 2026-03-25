@@ -4,8 +4,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Transform wordSpawnPoint;
-    private GameObject wordObject;
+    public GameObject wordObject;
 
+
+    public AudioClip[] dinosaurDeathClips; // звуки смерти динозавра
 
     [Header("Movement")]
     public float speed = 2f;
@@ -14,9 +16,9 @@ public class Enemy : MonoBehaviour
 
 
 
-    [Header("Indexes")]
-    public int lineId;
-    public int indexInLine;
+    // [Header("Indexes")]
+    // public int lineId;
+    // public int indexInLine;
     
     
 
@@ -57,38 +59,40 @@ public class Enemy : MonoBehaviour
         wordObject = word;
     }
 
-    public void SetDataIndex(int line, int index)
-    {
-        lineId = line;
-        indexInLine = index;
-    }
+    // public void SetDataIndex(int line, int index)
+    // {
+    //     lineId = line;
+    //     indexInLine = index;
+    // }
 
     public void Die()
     {
-        int myLine = lineId;
 
-        Enemy[] allEnemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        // Enemy[] allEnemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
 
-        // собираем только нужную линию
-        List<Enemy> sameLine = new List<Enemy>();
+        // // собираем только нужную линию
+        // List<Enemy> sameLine = new List<Enemy>();
 
-        foreach (Enemy e in allEnemies)
-        {
-            if (e.lineId == myLine && e != this)
-            {
-                sameLine.Add(e);
-            }
-        }
+        // foreach (Enemy e in allEnemies)
+        // {
+        //     if (e.lineId == myLine && e != this)
+        //     {
+        //         sameLine.Add(e);
+        //     }
+        // }
 
         // сортируем по индексу
-        sameLine.Sort((a, b) => a.indexInLine.CompareTo(b.indexInLine));
+        // sameLine.Sort((a, b) => a.indexInLine.CompareTo(b.indexInLine));
 
-        // 🔥 пересчитываем заново
-        for (int i = 0; i < sameLine.Count; i++)
-        {
-            sameLine[i].indexInLine = i;
-        }
+        // // 🔥 пересчитываем заново
+        // for (int i = 0; i < sameLine.Count; i++)
+        // {
+        //     sameLine[i].indexInLine = i;
+        // }
 
+
+        WaveSpawner.Instance.RemoveEnemy(this);
+        AudioManager.instance.PlaySoundFXClip(dinosaurDeathClips, transform, 1f); // звук смерти
         Destroy(gameObject);
     }
 }

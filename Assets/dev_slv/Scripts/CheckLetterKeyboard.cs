@@ -80,7 +80,7 @@ public class CheckLetterKeyboard : MonoBehaviour
                     if (data == null || data.value < levelToLearnLetter)
                         continue;
 
-                    CheckLetterInAllWords(letterPressed);
+                    CheckLetterInFirstEnemies(letterPressed);
                 }
             }
         }
@@ -102,19 +102,23 @@ public class CheckLetterKeyboard : MonoBehaviour
         return found;
     }
 
-    public bool CheckLetterInLineIndex(char letter, int targetIndex)
+    public bool CheckLetterInFirstEnemies(char letter)
     {
         bool found = false;
 
-        Word[] allWords = Object.FindObjectsByType<Word>(FindObjectsSortMode.None);
-        foreach (Word w in allWords)
+        // Перебираем все линии
+        foreach (var linePair in WaveSpawner.Instance.enemiesByLine)
         {
-            Enemy data = w.GetComponentInParent<Enemy>();
-            if (data == null) continue;
+            var lineEnemies = linePair.Value;
 
-            if (data.indexInLine != targetIndex) continue;
+            if (lineEnemies.Count == 0) continue;
 
-            if (w.CheckLetter(letter))
+            // Берем только первого врага в линии
+            Enemy firstEnemy = lineEnemies[0];
+            if (firstEnemy.wordObject == null) continue;
+
+            Word word = firstEnemy.wordObject.GetComponent<Word>();
+            if (word != null && word.CheckLetter(letter))
             {
                 found = true;
             }
