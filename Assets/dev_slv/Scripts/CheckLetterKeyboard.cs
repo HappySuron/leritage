@@ -102,6 +102,27 @@ public class CheckLetterKeyboard : MonoBehaviour
         return found;
     }
 
+    public bool CheckLetterInLineIndex(char letter, int targetIndex)
+    {
+        bool found = false;
+
+        Word[] allWords = Object.FindObjectsByType<Word>(FindObjectsSortMode.None);
+        foreach (Word w in allWords)
+        {
+            Enemy data = w.GetComponentInParent<Enemy>();
+            if (data == null) continue;
+
+            if (data.indexInLine != targetIndex) continue;
+
+            if (w.CheckLetter(letter))
+            {
+                found = true;
+            }
+        }
+
+        return found;
+    }
+
     public void LearnLetter(char letter, int value)
     {
         char upperLetter = char.ToUpper(letter);
