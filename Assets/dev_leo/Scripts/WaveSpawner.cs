@@ -42,6 +42,7 @@ public class WaveSpawner : MonoBehaviour
         public bool useAllLetterGroups = true;
         public List<string> letterGroupNames = new List<string>();
         // public List<LetterGroup> letterGroups = new List<LetterGroup>();
+        
     }
 
     [SerializeField] private List<SpawnLine> spawnLines = new List<SpawnLine>();
@@ -50,11 +51,15 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private bool loopWaves = true;
     [SerializeField] private bool autoStartOnAwake = false;
 
+    [SerializeField] private Dictionary<int, int> lineSpawnCounters = new Dictionary<int, int>();
+
     private float waveTimer = 0f;
     private int currentWaveIndex = 0;
     private int currentSpawnCount = 0;
     private bool waveEnded = false;
     private bool isSpawning = false;
+
+
 
     private void Awake()
     {
@@ -281,6 +286,24 @@ public class WaveSpawner : MonoBehaviour
         word
         );
         ApplyInitialSpeed(spawnedObject, prefabData.initialSpeed);
+
+        // 🔥 --- НОВОЕ ---
+        
+        // получаем текущий индекс в линии
+        if (!lineSpawnCounters.ContainsKey(lineIndex))
+            lineSpawnCounters[lineIndex] = 0;
+
+        int indexInLine = lineSpawnCounters[lineIndex];
+
+        // увеличиваем счетчик
+        lineSpawnCounters[lineIndex]++;
+
+        // записываем в объект
+        Enemy enemy = spawnedObject.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.SetDataIndex(lineIndex, indexInLine);
+        }
     }
 
     private void ApplyInitialSpeed(GameObject obj, Vector3 speed)

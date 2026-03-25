@@ -95,8 +95,8 @@ public class LetterRecognizerTesseract : MonoBehaviour
     void FoundLetter(char letter)
     {
         // Проверяем, есть ли буква в словах
-        bool found = CheckLetterKeyboard.Instance.CheckLetterInAllWords(letter);
-
+        //bool found = CheckLetterKeyboard.Instance.CheckLetterInAllWords(letter);
+        bool found = CheckLetterKeyboard.Instance.CheckLetterInLineIndex(letter, 0);
         // Только если что-то нашли, повышаем уровень
         if (found)
         {
