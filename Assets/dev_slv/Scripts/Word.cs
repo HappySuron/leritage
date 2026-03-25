@@ -25,25 +25,29 @@ public class Word : MonoBehaviour
     /// Проверяет текущую букву. Если совпадает - удаляет, если нет - подсвечивает красным
     /// </summary>
     /// <param name="letterToCheck">Буква для проверки</param>
-    public void CheckLetter(char letterToCheck)
+    public bool CheckLetter(char letterToCheck)
     {
-        CheckLetter(letterToCheck, false);
+        bool found = CheckLetter(letterToCheck, false);
+        return found;
     }
 
-    public void CheckLetter(char letterToCheck, bool checkOnlyFirst)
+    public bool CheckLetter(char letterToCheck, bool checkOnlyFirst = false)
     {
         if (lettersContainer == null || lettersContainer.childCount == 0)
-            return;
+            return false;
+
+        bool foundMatch = false;
 
         if (checkOnlyFirst)
         {
             Letter firstLetter = lettersContainer.GetChild(0).GetComponent<Letter>();
             if (firstLetter == null)
-                return;
+                return false;
 
             if (firstLetter.GetChar() == letterToCheck)
             {
                 firstLetter.RemoveLetter();
+                foundMatch = true;
                 Invoke(nameof(CheckEmptyWord), 0.01f);
             }
             else
@@ -51,10 +55,8 @@ public class Word : MonoBehaviour
                 firstLetter.HighlightWrong();
             }
 
-            return;
+            return foundMatch;
         }
-
-        bool foundMatch = false;
 
         for (int i = 0; i < lettersContainer.childCount; i++)
         {
@@ -79,6 +81,7 @@ public class Word : MonoBehaviour
         }
 
         Invoke(nameof(CheckEmptyWord), 0.01f);
+        return foundMatch;
     }
 
 

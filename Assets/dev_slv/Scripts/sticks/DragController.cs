@@ -145,4 +145,12 @@ public class DragController : MonoBehaviour
             isDragging = false;
         }
     }
+
+    public void ResetAllSticks()
+    {
+        for (int i = 0; i < sticks.Length; i++)
+        {
+            ResetStick(sticks[i]);
+        }
+    }
 }
