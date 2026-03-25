@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Word : MonoBehaviour
 {
+    public AudioClip[] dinosaurDeathClips; // звуки смерти динозавра
+
     public Transform lettersContainer;
 
     public Enemy ownerEnemy; // 👈 ссылка на врага
@@ -90,8 +92,11 @@ public class Word : MonoBehaviour
         if (lettersContainer.childCount == 0)
         {
             if (ownerEnemy != null)
+
+                
                 ownerEnemy.Die(); // 👈 убиваем врага
             Destroy(gameObject); // удаляем само слово
+            AudioManager.instance.PlaySoundFXClip(dinosaurDeathClips, transform, 1f); // звук смерти
         }
             
     }
