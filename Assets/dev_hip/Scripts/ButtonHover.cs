@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public float hoverScale = 1.1f;
     public float speed = 10f;
@@ -16,9 +16,18 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             transform.localScale, _targetScale, Time.unscaledDeltaTime * speed);
     }
 
-    public void OnPointerEnter(PointerEventData e) => 
+    public void OnPointerEnter(PointerEventData e) =>
         _targetScale = Vector3.one * hoverScale;
 
-    public void OnPointerExit(PointerEventData e) => 
+    public void OnPointerExit(PointerEventData e) =>
         _targetScale = Vector3.one;
+
+    public void OnPointerClick(PointerEventData e) =>
+        _targetScale = Vector3.one;
+
+    void OnDisable()
+    {
+        _targetScale = Vector3.one;
+        transform.localScale = Vector3.one;
+    }
 }
