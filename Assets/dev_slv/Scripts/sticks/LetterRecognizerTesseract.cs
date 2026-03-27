@@ -83,13 +83,15 @@ public class LetterRecognizerTesseract : MonoBehaviour
 
         Destroy(snapshot);
 
-        // 6. если нужна ОДНА буква — берём первую
+        // 6. берём первую заглавную букву
         if (string.IsNullOrWhiteSpace(recognizedText))
             return null;
 
-        recognizedText = recognizedText.Trim();
+        foreach (char c in recognizedText)
+            if (char.IsUpper(c))
+                return c.ToString();
 
-        return recognizedText.Length > 0 ? recognizedText[0].ToString() : null;
+        return null;
     }
 
     void FoundLetter(char letter)
