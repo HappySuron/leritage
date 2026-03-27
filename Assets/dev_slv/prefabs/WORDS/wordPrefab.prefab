@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4481429511746564367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,9 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89fdc3118501aa14b888814684f47ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Word
-  dinosaurDeathClips:
-  - {fileID: 8300000, guid: cbf5fc85591174a4fbe6b466339de87b, type: 3}
-  - {fileID: 8300000, guid: 8f073c335d53cdc4c9b9a015cff43c2a, type: 3}
   lettersContainer: {fileID: 1207436778671810708}
   ownerEnemy: {fileID: 0}
 --- !u!1 &4915985866297745688
