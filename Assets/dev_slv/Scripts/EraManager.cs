@@ -14,6 +14,15 @@ public class EraManager : MonoBehaviour
 
     public EraType currentEra;
 
+    [Header("Музыка")]
+    public AudioSource musicSource;
+    public AudioClip stoneAgeMusic;
+    public AudioClip egyptMusic;
+    public AudioClip medievalMusic;
+    public AudioClip newAgeMusic;
+    public AudioClip modernMusic;
+    public AudioClip futureMusic;
+
     private void Awake()
     {
         if (Instance == null)
@@ -36,6 +45,7 @@ public class EraManager : MonoBehaviour
         Debug.Log("Смена эпохи: " + newEra);
 
         ApplyEra();
+        PlayEraMusic();
     }
 
     private void ApplyEra()
@@ -99,5 +109,36 @@ public class EraManager : MonoBehaviour
         SwitchEra(nextEra);
     }
 
-    
+    void PlayEraMusic()
+    {
+        AudioClip clip = null;
+
+        switch (currentEra)
+        {
+            case EraType.StoneAge:
+                clip = stoneAgeMusic;
+                break;
+
+            case EraType.Medieval:
+                clip = medievalMusic;
+                break;
+
+            case EraType.Modern:
+                clip = modernMusic;
+                break;
+
+            case EraType.Future:
+                clip = futureMusic;
+                break;
+        }
+
+        if (clip != null)
+        {
+            musicSource.clip = clip;
+            musicSource.loop = true;
+            musicSource.Play();
+        }
+    }
+
+
 }
