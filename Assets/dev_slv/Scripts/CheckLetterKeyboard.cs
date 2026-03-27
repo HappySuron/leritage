@@ -16,6 +16,10 @@ public class CheckLetterKeyboard : MonoBehaviour
 
     public int levelToLearnLetter = 5;
 
+    public int learendLettersCount = 0;
+
+    public Canvas winCanvas;
+
     // 🔥 быстрый доступ к визуалам
     private Dictionary<char, LetterKeyVisual> letterVisuals = new Dictionary<char, LetterKeyVisual>();
 
@@ -172,6 +176,16 @@ public class CheckLetterKeyboard : MonoBehaviour
         else
         {
             data.value += levelChange;
+            if (data.value == levelToLearnLetter)
+            {
+                learendLettersCount++;
+                Debug.Log("Letter " + upperLetter + " learned");
+                if (learendLettersCount >= levelToLearnLetter)
+                {
+                    Debug.Log("All letters learned");
+                    winCanvas.gameObject.SetActive(true);
+                }
+            }
         }
 
         // 🔥 защита от отрицательных значений
