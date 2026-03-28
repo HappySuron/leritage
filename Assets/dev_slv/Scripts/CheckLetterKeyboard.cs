@@ -54,6 +54,8 @@ public class CheckLetterKeyboard : MonoBehaviour
         {
             lettersList.Add(new LetterData { letter = c, value = 0 });
         }
+        LearnLetter('I', levelToLearnLetter);
+        learendLettersCount++;
     }
 
     // 🔥 регистрация кнопок

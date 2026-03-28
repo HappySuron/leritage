@@ -60,13 +60,13 @@ public class LetterRecognizerTesseract : MonoBehaviour
         snapshot.Apply();
 
         // 3. (опционально) сохранить скрин
-        string folder = Application.dataPath + "/Screenshots";
-        if (!System.IO.Directory.Exists(folder))
-            System.IO.Directory.CreateDirectory(folder);
+        // string folder = Application.dataPath + "/Screenshots";
+        // if (!System.IO.Directory.Exists(folder))
+        //     System.IO.Directory.CreateDirectory(folder);
 
-        string filename = folder + "/screenshot_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmssfff") + ".png";
-        System.IO.File.WriteAllBytes(filename, snapshot.EncodeToPNG());
-        Debug.Log("Скрин сохранён: " + filename);
+        // string filename = folder + "/screenshot_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmssfff") + ".png";
+        // System.IO.File.WriteAllBytes(filename, snapshot.EncodeToPNG());
+        // Debug.Log("Скрин сохранён: " + filename);
 
         // 4. очистка
         stickCamera.targetTexture = null;
