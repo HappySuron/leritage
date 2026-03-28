@@ -28,6 +28,10 @@ public class EraManager : MonoBehaviour
     public AudioClip modernMusic;
     public AudioClip futureMusic;
 
+
+    [Header("HintsToTurnOf")]
+    public GameObject[] canvasesToTurnOf;
+
     private void Awake()
     {
         if (Instance == null)
@@ -94,6 +98,11 @@ public class EraManager : MonoBehaviour
 
     void ApplyDrevniyMir()
     {
+        foreach (GameObject _canvas in canvasesToTurnOf) {
+            _canvas.SetActive(false);
+        }
+        
+
         Debug.Log("Древний мир");
     }
 

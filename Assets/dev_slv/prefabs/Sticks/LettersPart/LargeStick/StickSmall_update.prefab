@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4247392722005426821
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 418741222677295656, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 21300000, guid: fdaf79a48ee84014daf97f7ec0252007, type: 3}
+    - target: {fileID: 418741222677295656, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d6a31255be05d547bd0b239e8a6efa1, type: 3}
+    - target: {fileID: 418741222677295656, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: 'sprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 21300000, guid: a0e3f6abbc42c714d957b8f3c0c91dd4, type: 3}
+    - target: {fileID: 418741222677295656, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: 'sprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: 21300000, guid: edbf1282d38e6154f9a6f6e6e33ba1db, type: 3}
+    - target: {fileID: 418741222677295656, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: 'sprites.Array.data[4]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 7664002c2f0a28e438220ae7e76e6bae, type: 3}
+    - target: {fileID: 418741222677295656, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: 'sprites.Array.data[5]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 05d4ff3db89383d4988b01c6909cd400, type: 3}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788254038527495206, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984938432384208626, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_Name
+      value: StickSmall_update Variant Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136720191115275860, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fdaf79a48ee84014daf97f7ec0252007, type: 3}
+    - target: {fileID: 8314709365165816550, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e99fa31b495e9aa4e91ff5b17f85e62e, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 439e23bd14807bf479e94aa66648a9f5, type: 3}

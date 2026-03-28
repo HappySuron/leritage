@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3927504607438429998
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1328500895633889098, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_Name
+      value: pr_enemy_crocodile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717180960297995082, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3793283297765241338, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 04dbfef29a33c5f4c834bdc250c719cd, type: 3}
+    - target: {fileID: 6330640625949660750, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: dinosaurDeathClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6330640625949660750, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 738156bb3dd20e743ba2b7a5f687f141, type: 3}
+    - target: {fileID: 6330640625949660750, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 77546731bc0b96d41af1f9b3225e9100, type: 3}
+    - target: {fileID: 6330640625949660750, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e0804cbd632802b4498c555c1c70b4cf, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0c113e29cfc4db947a7b6a43166b87aa, type: 3}
