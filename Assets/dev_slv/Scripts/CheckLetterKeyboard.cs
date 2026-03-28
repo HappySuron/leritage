@@ -207,6 +207,7 @@ public class CheckLetterKeyboard : MonoBehaviour
         data.value = Mathf.Max(0, data.value);
 
         UpdateLetterVisual(upperLetter, data.value);
+
     }
 
     // 🔥 обновление визуала без FindObjects

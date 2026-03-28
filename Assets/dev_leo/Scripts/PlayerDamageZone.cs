@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerDamageZone : MonoBehaviour
@@ -48,7 +49,8 @@ public class PlayerDamageZone : MonoBehaviour
 
         userHealth.TakeDamage(damageAmount);
         nextAllowedHitTimeByObject[objectId] = currentTime + Mathf.Max(0f, hitCooldown);
-        Destroy(other.gameObject);
+        other.GetComponent<Enemy>().Die(); // 👈 убиваем врага
+        //Destroy(other.gameObject);
     }
 
     private bool PassesFilter(Collider other)

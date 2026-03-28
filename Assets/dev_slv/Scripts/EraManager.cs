@@ -15,6 +15,8 @@ public class EraManager : MonoBehaviour
 {
     public static EraManager Instance { get; private set; }
 
+    public static System.Action<int> OnEraChanged;
+
     public EraType currentEra;
 
     [Header("Музыка")]
@@ -47,8 +49,13 @@ public class EraManager : MonoBehaviour
 
         Debug.Log("Смена эпохи: " + newEra);
 
+
+        LeftHandMovement.Instance.SetEpoch((int)currentEra); // change left hand
         ApplyEra();
         PlayEraMusic();
+
+
+        OnEraChanged?.Invoke((int)currentEra); // added action
     }
 
     private void ApplyEra()
