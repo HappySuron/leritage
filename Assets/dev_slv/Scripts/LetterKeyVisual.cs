@@ -27,7 +27,7 @@ public class LetterKeyVisual : MonoBehaviour
     {
         float alphaFloat = (float)currentLevel / maxLevel;
         alphaFloat = Mathf.Clamp01(alphaFloat);
-
+        Debug.Log("SLV "+ alphaFloat);
         // 🔥 выбираем цвет
         Color baseColor = currentLevel >= maxLevel ? learnedColor : normalColor;
 

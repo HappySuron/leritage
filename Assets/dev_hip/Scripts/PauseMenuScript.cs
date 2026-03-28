@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class PauseMenuScript : MonoBehaviour
 {
@@ -24,7 +25,12 @@ public class PauseMenuScript : MonoBehaviour
 
     public void ToMainMenu()
     {
+        
         Time.timeScale = 1f;
+        EraManager.Instance.StopEraMusic();
+        Destroy(EraManager.Instance);
+        Destroy(CheckLetterKeyboard.Instance);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1); // индекс главного меню
+
     }
 }
