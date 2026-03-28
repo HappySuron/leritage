@@ -1,15 +1,26 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public Transform wordSpawnPoint;
-    private GameObject wordObject;
+    public GameObject wordObject;
 
+
+    public AudioClip[] dinosaurDeathClips; // звуки смерти динозавра
 
     [Header("Movement")]
     public float speed = 2f;
     private Vector3 targetPosition;
     private bool hasTarget = false;
+
+
+
+    // [Header("Indexes")]
+    // public int lineId;
+    // public int indexInLine;
+    
+    
 
 
     void Update()
@@ -48,9 +59,40 @@ public class Enemy : MonoBehaviour
         wordObject = word;
     }
 
+    // public void SetDataIndex(int line, int index)
+    // {
+    //     lineId = line;
+    //     indexInLine = index;
+    // }
+
     public void Die()
     {
-        // тут можно добавить эффекты, анимацию и т.д.
+
+        // Enemy[] allEnemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+
+        // // собираем только нужную линию
+        // List<Enemy> sameLine = new List<Enemy>();
+
+        // foreach (Enemy e in allEnemies)
+        // {
+        //     if (e.lineId == myLine && e != this)
+        //     {
+        //         sameLine.Add(e);
+        //     }
+        // }
+
+        // сортируем по индексу
+        // sameLine.Sort((a, b) => a.indexInLine.CompareTo(b.indexInLine));
+
+        // // 🔥 пересчитываем заново
+        // for (int i = 0; i < sameLine.Count; i++)
+        // {
+        //     sameLine[i].indexInLine = i;
+        // }
+
+
+        WaveSpawner.Instance.RemoveEnemy(this);
+        AudioManager.instance.PlaySoundFXClip(dinosaurDeathClips, transform, 1f); // звук смерти
         Destroy(gameObject);
     }
 }

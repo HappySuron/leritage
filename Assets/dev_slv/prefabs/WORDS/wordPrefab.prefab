@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Word
   lettersContainer: {fileID: 1207436778671810708}
+  ownerEnemy: {fileID: 0}
 --- !u!1 &4915985866297745688
 GameObject:
   m_ObjectHideFlags: 0

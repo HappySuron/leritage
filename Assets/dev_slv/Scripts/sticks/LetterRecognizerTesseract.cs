@@ -35,6 +35,9 @@ public class LetterRecognizerTesseract : MonoBehaviour
             if (!string.IsNullOrEmpty(result)){
                 FoundLetter(Convert.ToChar(result));
                 Debug.Log("Распознан текст: " + result);
+
+                // 👉 СБРОС ПАЛОЧЕК
+                DragController.Instance.ResetAllSticks();
             }
             else
             {
@@ -80,18 +83,26 @@ public class LetterRecognizerTesseract : MonoBehaviour
 
         Destroy(snapshot);
 
-        // 6. если нужна ОДНА буква — берём первую
+        // 6. берём первую заглавную букву
         if (string.IsNullOrWhiteSpace(recognizedText))
             return null;
 
-        recognizedText = recognizedText.Trim();
+        foreach (char c in recognizedText)
+            if (char.IsUpper(c))
+                return c.ToString();
 
-        return recognizedText.Length > 0 ? recognizedText[0].ToString() : null;
+        return null;
     }
 
     void FoundLetter(char letter)
     {
-        CheckLetterKeyboard.Instance.ChangeLetterLevel(letter, 1);
-        CheckLetterKeyboard.Instance.CheckLetterInAllWords(letter);
+        // Проверяем, есть ли буква в словах
+        //bool found = CheckLetterKeyboard.Instance.CheckLetterInAllWords(letter);
+        bool found = CheckLetterKeyboard.Instance.CheckLetterInFirstEnemies(letter);
+        // Только если что-то нашли, повышаем уровень
+        if (found)
+        {
+            CheckLetterKeyboard.Instance.ChangeLetterLevel(letter, 1);
+        }
     }
 }

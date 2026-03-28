@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [ExecuteInEditMode]
 public class KeyboardSettings : MonoBehaviour
@@ -72,19 +73,35 @@ public class KeyboardSettings : MonoBehaviour
                     continue;
                 }
 
+                // 🔥 НОВОЕ — записываем букву в скрипт
+                var keyVisual = key.GetComponent<LetterKeyVisual>();
+                if (keyVisual != null)
+                {
+                    keyVisual.SetLetter(keyChar);
+                }
+
                 key.name = GetKeyName(keyChar, row, col);
                 key.transform.localPosition = localPos;
-                key.transform.localRotation = Quaternion.Euler(180f, 0f, 0f);
+                key.transform.localRotation = Quaternion.Euler(0f, -180f, 0f);
                 //key.transform.localScale = Vector3.one;
                 key.transform.localScale = new Vector3(keyWidth, keyHeight, 1f);
                 
 
                 // Если есть компонент TextMeshPro или Text, можно проставить символ.
-                var text = key.GetComponentInChildren<UnityEngine.UI.Text>();
+
+                // commented by slv --
+                // var text = key.GetComponentInChildren<UnityEngine.UI.Text>();
+                // if (text != null)
+                // {
+                //     text.text = keyChar.ToString();
+                // }
+                // -- slv
+                var text = key.GetComponentInChildren<TextMeshProUGUI>();
                 if (text != null)
                 {
-                    text.text = keyChar.ToString();
+                    text.text = keyChar.ToString().ToUpper();
                 }
+
             }
         }
 

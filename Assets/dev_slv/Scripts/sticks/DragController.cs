@@ -1,5 +1,7 @@
 using UnityEngine;
 
+public enum DragRotationMode { ScrollWheel, Horizontal, Vertical, Tangential }
+
 public class DragController : MonoBehaviour
 {
     public static DragController Instance; // Singleton
@@ -12,6 +14,10 @@ public class DragController : MonoBehaviour
     public float liftHeight = 0.2f;
     public LayerMask draggableLayer;
 
+    [Header("Rotation Mode")]
+    public DragRotationMode rotationMode = DragRotationMode.ScrollWheel;
+    public float mouseDragRotateSpeed = 0.5f;
+
     [Header("Sticks")]
     public Rigidbody[] sticks; // массив палочек
 
@@ -22,6 +28,8 @@ public class DragController : MonoBehaviour
     private Rigidbody grabbed;
     private int grabbedIndex = -1;
     private bool isDragging = false;
+    private Vector2 lastMousePos;
+    private bool isRotatingByDrag = false;
 
     void Awake()
     {
@@ -50,7 +58,23 @@ public class DragController : MonoBehaviour
     void HandleInput()
     {
         if (Input.GetMouseButtonDown(0)) TryGrab();
-        if (Input.GetMouseButton(0) && grabbed != null) { Move(); Rotate(); }
+
+        if (Input.GetMouseButton(0) && grabbed != null)
+        {
+            bool bothButtons = rotationMode != DragRotationMode.ScrollWheel && Input.GetMouseButton(1);
+            if (bothButtons)
+            {
+                if (!isRotatingByDrag) { isRotatingByDrag = true; lastMousePos = Input.mousePosition; }
+                RotateByMouse();
+            }
+            else
+            {
+                isRotatingByDrag = false;
+                Move();
+                if (rotationMode == DragRotationMode.ScrollWheel) Rotate();
+            }
+        }
+
         if (Input.GetMouseButtonUp(0) && grabbed != null) Release();
     }
 
@@ -111,6 +135,40 @@ public class DragController : MonoBehaviour
             grabbed.MoveRotation(grabbed.rotation * Quaternion.Euler(0, scroll * rotateSpeed, 0));
     }
 
+    void RotateByMouse()
+    {
+        if (grabbed == null) return;
+
+        Vector2 currMousePos = Input.mousePosition;
+        float angle = 0f;
+
+        switch (rotationMode)
+        {
+            case DragRotationMode.Horizontal:
+                angle = currMousePos.x - lastMousePos.x;
+                grabbed.MoveRotation(grabbed.rotation * Quaternion.Euler(0, angle * mouseDragRotateSpeed, 0));
+                break;
+
+            case DragRotationMode.Vertical:
+                angle = currMousePos.y - lastMousePos.y;
+                grabbed.MoveRotation(grabbed.rotation * Quaternion.Euler(0, angle * mouseDragRotateSpeed, 0));
+                break;
+
+            case DragRotationMode.Tangential:
+                Vector2 objOnScreen = cam.WorldToScreenPoint(grabbed.position);
+                Vector2 prevDir = (lastMousePos - objOnScreen).normalized;
+                Vector2 currDir = (currMousePos - objOnScreen).normalized;
+                if (prevDir.magnitude > 0.01f && currDir.magnitude > 0.01f)
+                {
+                    angle = Vector2.SignedAngle(prevDir, currDir);
+                    grabbed.MoveRotation(grabbed.rotation * Quaternion.Euler(0, -angle * mouseDragRotateSpeed, 0));
+                }
+                break;
+        }
+
+        lastMousePos = currMousePos;
+    }
+
     void Release()
     {
         if (grabbed == null) return;
@@ -143,6 +201,14 @@ public class DragController : MonoBehaviour
             grabbed = null;
             grabbedIndex = -1;
             isDragging = false;
+        }
+    }
+
+    public void ResetAllSticks()
+    {
+        for (int i = 0; i < sticks.Length; i++)
+        {
+            ResetStick(sticks[i]);
         }
     }
 }

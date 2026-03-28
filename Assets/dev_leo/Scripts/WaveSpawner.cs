@@ -40,8 +40,16 @@ public class WaveSpawner : MonoBehaviour
         public int maxSpawnsInWave = 10;
         public bool avoidLetterRepeats = false;
         public bool useAllLetterGroups = true;
+
+        // 🔥 новые поля для длины слова
+        public int minWordLength = 2;
+        public int maxWordLength = 3;
+
         public List<string> letterGroupNames = new List<string>();
         // public List<LetterGroup> letterGroups = new List<LetterGroup>();
+
+
+        
     }
 
     [SerializeField] private List<SpawnLine> spawnLines = new List<SpawnLine>();
@@ -50,11 +58,16 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private bool loopWaves = true;
     [SerializeField] private bool autoStartOnAwake = false;
 
+    [SerializeField] public Dictionary<int, int> lineSpawnCounters = new Dictionary<int, int>();
+
     private float waveTimer = 0f;
     private int currentWaveIndex = 0;
     private int currentSpawnCount = 0;
     private bool waveEnded = false;
     private bool isSpawning = false;
+
+    // 🔥 список врагов по линиям
+    public Dictionary<int, List<Enemy>> enemiesByLine = new Dictionary<int, List<Enemy>>();
 
     private void Awake()
     {
@@ -281,6 +294,33 @@ public class WaveSpawner : MonoBehaviour
         word
         );
         ApplyInitialSpeed(spawnedObject, prefabData.initialSpeed);
+        Enemy enemy = spawnedObject.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            //enemy.lineId = lineIndex;
+
+            if (!enemiesByLine.ContainsKey(lineIndex))
+                enemiesByLine[lineIndex] = new List<Enemy>();
+
+            enemiesByLine[lineIndex].Add(enemy);
+        }
+        // // 🔥 --- НОВОЕ ---
+        
+        // // получаем текущий индекс в линии
+        // if (!lineSpawnCounters.ContainsKey(lineIndex))
+        //     lineSpawnCounters[lineIndex] = 0;
+
+        // int indexInLine = lineSpawnCounters[lineIndex];
+
+        // // увеличиваем счетчик
+        // lineSpawnCounters[lineIndex]++;
+
+        // // записываем в объект
+        // Enemy enemy = spawnedObject.GetComponent<Enemy>();
+        // if (enemy != null)
+        // {
+        //     enemy.SetDataIndex(lineIndex, indexInLine);
+        // }
     }
 
     private void ApplyInitialSpeed(GameObject obj, Vector3 speed)
@@ -335,7 +375,7 @@ public class WaveSpawner : MonoBehaviour
                 letterPool.Add(c);
         }
 
-        int wordLength = Random.Range(2, 3);
+        int wordLength = Random.Range(wave.minWordLength, wave.maxWordLength+1);
 
         // Если включён флаг "без повторов", ограничиваем длину слов пулом
         if (wave.avoidLetterRepeats && wordLength > letterPool.Count)
@@ -355,5 +395,27 @@ public class WaveSpawner : MonoBehaviour
 
         return new string(chars);
     }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        foreach (var linePair in enemiesByLine)
+        {
+            if (linePair.Value.Remove(enemy))
+                break; // нашли и удалили, дальше не нужно
+        }
+    }
+
+    public Enemy GetFirstEnemyInLine(int lineId)
+    {
+        if (!enemiesByLine.ContainsKey(lineId)) return null;
+
+        var list = enemiesByLine[lineId];
+
+        if (list.Count == 0) return null;
+
+        return list[0];
+    }
+
+
         // -- slv
 }
