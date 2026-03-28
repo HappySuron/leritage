@@ -2,21 +2,31 @@ using UnityEngine;
 
 public enum EraType
 {
-    StoneAge,
-    AncientWorld,
-    MiddleAges,
-    ModernHistory,
-    ModernerHistory,
-    Future
+    Doistoricheskiy,
+    DrevniyMir,
+    Srednevekovye,
+
+    ModernNovyyMir,
+    NoveyshiyMir,
+    Budushcheye
 }
 
 public class EraManager : MonoBehaviour
 {
     public static EraManager Instance { get; private set; }
 
+    public static System.Action<int> OnEraChanged;
+
     public EraType currentEra;
 
-    //private AudioSource musicSource;
+    [Header("Музыка")]
+    public AudioSource musicSource;
+    public AudioClip stoneAgeMusic;
+    public AudioClip egyptMusic;
+    public AudioClip medievalMusic;
+    public AudioClip newAgeMusic;
+    public AudioClip modernMusic;
+    public AudioClip futureMusic;
 
     private void Awake()
     {
@@ -24,9 +34,6 @@ public class EraManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            // кешируем AudioSource один раз
-            //musicSource = SoundMixerManager.Instance.GetComponentInChildren<AudioSource>();
         }
         else
         {
@@ -42,38 +49,72 @@ public class EraManager : MonoBehaviour
 
         Debug.Log("Смена эпохи: " + newEra);
 
+
+        LeftHandMovement.Instance.SetEpoch((int)currentEra); // change left hand
         ApplyEra();
         PlayEraMusic();
+
+
+        OnEraChanged?.Invoke((int)currentEra); // added action
     }
 
     private void ApplyEra()
     {
         switch (currentEra)
         {
-            case EraType.StoneAge:
-                Debug.Log("Первобытная история");
+            case EraType.Doistoricheskiy:
+                ApplyDoistoricheskiy();
                 break;
 
-            case EraType.AncientWorld:
-                Debug.Log("Древний мир");
+            case EraType.DrevniyMir:
+                ApplyDrevniyMir();
                 break;
 
-            case EraType.MiddleAges:
-                Debug.Log("Средневековье");
+            case EraType.Srednevekovye:
+                ApplySrednevekovye();
                 break;
 
-            case EraType.ModernHistory:
-                Debug.Log("Новая история");
+            case EraType.ModernNovyyMir:
+                ApplyModernNovyyMir();
                 break;
 
-            case EraType.ModernerHistory:
-                Debug.Log("Новейшая история");
+            case EraType.NoveyshiyMir:
+                ApplyNoveyshiyMir();
                 break;
 
-            case EraType.Future:
-                Debug.Log("Будущее");
+            case EraType.Budushcheye:
+                ApplyBudushcheye();
                 break;
         }
+    }
+    void ApplyDoistoricheskiy()
+    {
+        Debug.Log("Доисторический");
+    }
+
+    void ApplyDrevniyMir()
+    {
+        Debug.Log("Древний мир");
+    }
+
+    void ApplySrednevekovye()
+    {
+        Debug.Log("Средневековье");
+    }
+
+    void ApplyModernNovyyMir()
+    {
+        Debug.Log("Раннее новое время");
+    }
+
+    void ApplyNoveyshiyMir()
+    {
+        Debug.Log("Новейшее время");
+    }
+
+    void ApplyBudushcheye()
+    {
+        Debug.Log("Будущее");
     }
 
     [ContextMenu("Next Era")]
@@ -81,62 +122,62 @@ public class EraManager : MonoBehaviour
     {
         int nextIndex = (int)currentEra + 1;
 
+        // если вышли за пределы — возвращаемся в начало
         if (nextIndex >= System.Enum.GetValues(typeof(EraType)).Length)
         {
+            //nextIndex = 0;
             Debug.Log("SLV - index out of range - ERA");
-            return;
         }
-
+        
         WaveSpawner.Instance.NextWave();
 
-        SwitchEra((EraType)nextIndex);
-        this.PlayEraMusic();
+        EraType nextEra = (EraType)nextIndex;
+        SwitchEra(nextEra);
     }
 
-    void PlayEraMusic()
+    public void PlayEraMusic()
     {
         AudioClip clip = null;
 
         switch (currentEra)
         {
-            case EraType.StoneAge:
-                clip = SoundMixerManager.Instance.stoneAgeMusic;
+            case EraType.Doistoricheskiy:
+                clip = stoneAgeMusic;
                 break;
 
-            case EraType.AncientWorld:
-                clip = SoundMixerManager.Instance.egyptMusic;
+            case EraType.DrevniyMir:
+                clip = egyptMusic;
                 break;
 
-            case EraType.MiddleAges:
-                clip = SoundMixerManager.Instance.medievalMusic;
+            case EraType.Srednevekovye:
+                clip = medievalMusic;
                 break;
 
-            case EraType.ModernHistory:
-                clip = SoundMixerManager.Instance.modernMusic;
+            case EraType.ModernNovyyMir:
+                clip = newAgeMusic;
                 break;
 
-            case EraType.ModernerHistory:
-                clip = SoundMixerManager.Instance.modernMusic;
+            case EraType.NoveyshiyMir:
+                clip = modernMusic;
                 break;
 
-            case EraType.Future:
-                clip = SoundMixerManager.Instance.futureMusic;
+            case EraType.Budushcheye:
+                clip = futureMusic;
                 break;
         }
 
-        if (clip != null && SoundMixerManager.Instance.GetComponentInChildren<AudioSource>() != null)
+        if (clip != null)
         {
-            SoundMixerManager.Instance.GetComponentInChildren<AudioSource>().clip = clip;
-            SoundMixerManager.Instance.GetComponentInChildren<AudioSource>().loop = true;
-            SoundMixerManager.Instance.GetComponentInChildren<AudioSource>().Play();
+            musicSource.clip = clip;
+            musicSource.loop = true;
+            musicSource.Play();
         }
     }
 
-    public void StopMusic()
+    public void StopEraMusic()
     {
-        if (SoundMixerManager.Instance.GetComponentInChildren<AudioSource>() != null && SoundMixerManager.Instance.GetComponentInChildren<AudioSource>().isPlaying)
-        {
-            SoundMixerManager.Instance.GetComponentInChildren<AudioSource>().Stop();
-        }
+        musicSource.Stop();
     }
+
+
 }
