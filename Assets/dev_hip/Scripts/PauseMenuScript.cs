@@ -7,6 +7,7 @@ public class PauseMenuScript : MonoBehaviour
     public GameObject pausePanel;
     private bool _isPaused = false;
 
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -24,6 +25,8 @@ public class PauseMenuScript : MonoBehaviour
 
     public void ToMainMenu()
     {
+        //EraManager.Instance.StopMusic();
+        
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1); // индекс главного меню
     }
