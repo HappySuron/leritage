@@ -23,6 +23,15 @@ public class CheckLetterKeyboard : MonoBehaviour
     // 🔥 быстрый доступ к визуалам
     private Dictionary<char, LetterKeyVisual> letterVisuals = new Dictionary<char, LetterKeyVisual>();
 
+
+
+    [Header("Era's count")]
+    public int letterToWin = 27;
+    private int currentStageIndex = 0; 
+    
+
+    [SerializeField] private int[] stageThresholds  = { 5, 10, 15, 20, 27 };
+
     private void Awake()
     {
         if (Instance == null)
@@ -51,6 +60,8 @@ public class CheckLetterKeyboard : MonoBehaviour
     public void RegisterKey(LetterKeyVisual key)
     {
         char upper = char.ToUpper(key.Letter);
+
+        //Debug.Log("Register key: " + upper); // 👈
 
         if (!letterVisuals.ContainsKey(upper))
         {
@@ -180,7 +191,11 @@ public class CheckLetterKeyboard : MonoBehaviour
             {
                 learendLettersCount++;
                 Debug.Log("Letter " + upperLetter + " learned");
-                if (learendLettersCount >= levelToLearnLetter)
+
+                CheckStageProgress(); // 🔥 вот тут вызываем проверку slv
+
+
+                if (learendLettersCount >= letterToWin)
                 {
                     Debug.Log("All letters learned");
                     winCanvas.gameObject.SetActive(true);
@@ -200,6 +215,17 @@ public class CheckLetterKeyboard : MonoBehaviour
         if (letterVisuals.TryGetValue(letter, out var key))
         {
             key.UpdateVisual(level, levelToLearnLetter);
+        }
+    }
+
+    private void CheckStageProgress()
+    {
+        // пока не вышли за границы массива и достигнут порог
+        while (currentStageIndex < stageThresholds.Length && learendLettersCount >= stageThresholds[currentStageIndex])
+        {
+            // вызываем метод менеджера
+            EraManager.Instance.MoveToNextEra();
+            currentStageIndex++;
         }
     }
 }

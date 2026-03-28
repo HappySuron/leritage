@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9135857299173610404, guid: fbcb630bffc69d84892f0f0794aa1792, type: 3}
+      propertyPath: dinosaurDeathClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135857299173610404, guid: fbcb630bffc69d84892f0f0794aa1792, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f073c335d53cdc4c9b9a015cff43c2a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
