@@ -2857,6 +2857,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundMixerManager
   audioMixer: {fileID: 24100000, guid: 59335f1f87aa9b34ea1a2a0053c8c414, type: 2}
+  masterSlider: {fileID: 2043925342}
+  sfxSlider: {fileID: 1277746847}
+  musicSlider: {fileID: 1179696800}
 --- !u!4 &810640274
 Transform:
   m_ObjectHideFlags: 0
