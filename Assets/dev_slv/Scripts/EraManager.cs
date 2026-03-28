@@ -2,10 +2,13 @@ using UnityEngine;
 
 public enum EraType
 {
-    StoneAge,
-    Medieval,
-    Modern,
-    Future
+    Doistoricheskiy,
+    DrevniyMir,
+    Srednevekovye,
+
+    ModernNovyyMir,
+    NoveyshiyMir,
+    Budushcheye
 }
 
 public class EraManager : MonoBehaviour
@@ -52,41 +55,57 @@ public class EraManager : MonoBehaviour
     {
         switch (currentEra)
         {
-            case EraType.StoneAge:
-                ApplyStoneAge();
+            case EraType.Doistoricheskiy:
+                ApplyDoistoricheskiy();
                 break;
 
-            case EraType.Medieval:
-                ApplyMedieval();
+            case EraType.DrevniyMir:
+                ApplyDrevniyMir();
                 break;
 
-            case EraType.Modern:
-                ApplyModern();
+            case EraType.Srednevekovye:
+                ApplySrednevekovye();
                 break;
 
-            case EraType.Future:
-                ApplyFuture();
+            case EraType.ModernNovyyMir:
+                ApplyModernNovyyMir();
+                break;
+
+            case EraType.NoveyshiyMir:
+                ApplyNoveyshiyMir();
+                break;
+
+            case EraType.Budushcheye:
+                ApplyBudushcheye();
                 break;
         }
     }
-
-    void ApplyStoneAge()
+    void ApplyDoistoricheskiy()
     {
-        Debug.Log("Каменный век");
-        
+        Debug.Log("Доисторический");
     }
 
-    void ApplyMedieval()
+    void ApplyDrevniyMir()
+    {
+        Debug.Log("Древний мир");
+    }
+
+    void ApplySrednevekovye()
     {
         Debug.Log("Средневековье");
     }
 
-    void ApplyModern()
+    void ApplyModernNovyyMir()
     {
-        Debug.Log("Современность");
+        Debug.Log("Раннее новое время");
     }
 
-    void ApplyFuture()
+    void ApplyNoveyshiyMir()
+    {
+        Debug.Log("Новейшее время");
+    }
+
+    void ApplyBudushcheye()
     {
         Debug.Log("Будущее");
     }
@@ -109,25 +128,33 @@ public class EraManager : MonoBehaviour
         SwitchEra(nextEra);
     }
 
-    void PlayEraMusic()
+    public void PlayEraMusic()
     {
         AudioClip clip = null;
 
         switch (currentEra)
         {
-            case EraType.StoneAge:
+            case EraType.Doistoricheskiy:
                 clip = stoneAgeMusic;
                 break;
 
-            case EraType.Medieval:
+            case EraType.DrevniyMir:
+                clip = egyptMusic;
+                break;
+
+            case EraType.Srednevekovye:
                 clip = medievalMusic;
                 break;
 
-            case EraType.Modern:
+            case EraType.ModernNovyyMir:
+                clip = newAgeMusic;
+                break;
+
+            case EraType.NoveyshiyMir:
                 clip = modernMusic;
                 break;
 
-            case EraType.Future:
+            case EraType.Budushcheye:
                 clip = futureMusic;
                 break;
         }
@@ -138,6 +165,11 @@ public class EraManager : MonoBehaviour
             musicSource.loop = true;
             musicSource.Play();
         }
+    }
+
+    public void StopEraMusic()
+    {
+        musicSource.Stop();
     }
 
 
