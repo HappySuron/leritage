@@ -197,13 +197,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a5db090689e69e746a79a8ad026cb5e2, type: 3}
   - {fileID: 21300000, guid: e9280ee6d686b3f4ca66734122b0c159, type: 3}
   - {fileID: 21300000, guid: 9679f8ed9aa1d554299bbad24a09916b, type: 3}
-  - {fileID: 21300000, guid: 9679f8ed9aa1d554299bbad24a09916b, type: 3}
+  - {fileID: 21300000, guid: 602df7f705401ce4e8f1c349cc400e69, type: 3}
   press:
   - {fileID: 21300000, guid: 5c6f197bca5acd64abba1dc0718a3d91, type: 3}
   - {fileID: 21300000, guid: 5eb643ed44a6f634db771a2f08c8cd8f, type: 3}
   - {fileID: 21300000, guid: adcb5e59d399cbf48b0d04637eac42eb, type: 3}
   - {fileID: 21300000, guid: 5a959941f283dc745a6b6b745e23bad7, type: 3}
   - {fileID: 21300000, guid: e7e206efe3415ef438c27ee4035ede20, type: 3}
-  - {fileID: 21300000, guid: e7e206efe3415ef438c27ee4035ede20, type: 3}
+  - {fileID: 21300000, guid: e685458e91852c94fb4e51da147d9939, type: 3}
   moveSpeed: 5
   pressDelay: 0.2
