@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: fb9f1284325e0da4aa13eae3343a7b74, type: 3}
+    - target: {fileID: 6534920065276269257, guid: 573ad0e5d4f69c64dae2dab56f687fe2, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: fd22578b32fc0704c89c003239b883dd, type: 3}
+    - target: {fileID: 6534920065276269257, guid: 573ad0e5d4f69c64dae2dab56f687fe2, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 52bde0f7a35f35d4a8e5bdeab9eb255b, type: 3}
+    - target: {fileID: 6534920065276269257, guid: 573ad0e5d4f69c64dae2dab56f687fe2, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a9eee728a72ec145be24d9e170bdf62, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

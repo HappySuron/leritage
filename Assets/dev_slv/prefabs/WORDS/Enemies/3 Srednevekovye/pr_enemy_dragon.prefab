@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: pr_enemy_dragon
       objectReference: {fileID: 0}
+    - target: {fileID: 7015403954006722912, guid: fc407450a5ee18e4eaca6596a2a53718, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 9824e25ddaf03b84e86bc4ab0ae13e50, type: 3}
+    - target: {fileID: 7015403954006722912, guid: fc407450a5ee18e4eaca6596a2a53718, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 01ee7ddeac3c5504daf9170ede933d2f, type: 3}
+    - target: {fileID: 7015403954006722912, guid: fc407450a5ee18e4eaca6596a2a53718, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 908edc7a220269a40b7c16da59205b13, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2326400812179006992, guid: c92e30252d588e844a53a184982b87d6, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ccac88ece4442864da522d6bdaaa630f, type: 3}
+    - target: {fileID: 2326400812179006992, guid: c92e30252d588e844a53a184982b87d6, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c0c48ba409b501c4e92981c75b68dda0, type: 3}
+    - target: {fileID: 2326400812179006992, guid: c92e30252d588e844a53a184982b87d6, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e7ff40db160b2644da8604baea3f2772, type: 3}
     - target: {fileID: 4843496201322414500, guid: c92e30252d588e844a53a184982b87d6, type: 3}
       propertyPath: m_Sprite
       value: 

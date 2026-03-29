@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: pr_enemy_roboDino
       objectReference: {fileID: 0}
+    - target: {fileID: 8316037846413234205, guid: e6311d416c4ac564da0d2f553befa172, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ee9e97b3dc98ea14b94de312c435b1bd, type: 3}
+    - target: {fileID: 8316037846413234205, guid: e6311d416c4ac564da0d2f553befa172, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 37f8111b553861d4b81eba36e5177d6c, type: 3}
+    - target: {fileID: 8316037846413234205, guid: e6311d416c4ac564da0d2f553befa172, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 029e8b67a4e48d44d8e293b09d374ef5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

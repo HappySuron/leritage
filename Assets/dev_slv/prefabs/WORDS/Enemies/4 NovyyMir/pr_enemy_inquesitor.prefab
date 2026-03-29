@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8010263541107282866, guid: 7b89bc48d4de3934882d851b776d9184, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ff977b7e9854244c8c56c727e205271, type: 3}
+    - target: {fileID: 8010263541107282866, guid: 7b89bc48d4de3934882d851b776d9184, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 6401ef0220f9cbf4daa56bca964e27af, type: 3}
+    - target: {fileID: 8010263541107282866, guid: 7b89bc48d4de3934882d851b776d9184, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: bcd6ec381e9dabf47b84d68768c2b4aa, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

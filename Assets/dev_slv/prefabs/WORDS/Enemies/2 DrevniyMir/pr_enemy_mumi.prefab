@@ -56,6 +56,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: pr_enemy_mumi
       objectReference: {fileID: 0}
+    - target: {fileID: 7015403954006722912, guid: fc407450a5ee18e4eaca6596a2a53718, type: 3}
+      propertyPath: dinosaurDeathClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015403954006722912, guid: fc407450a5ee18e4eaca6596a2a53718, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ea1d68f8ad6e6544a5d02c1e49786b1, type: 3}
+    - target: {fileID: 7015403954006722912, guid: fc407450a5ee18e4eaca6596a2a53718, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d39506b785505394e982110ffecf210e, type: 3}
+    - target: {fileID: 7015403954006722912, guid: fc407450a5ee18e4eaca6596a2a53718, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1759a5c2265ae734f9a7f4208393af8b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

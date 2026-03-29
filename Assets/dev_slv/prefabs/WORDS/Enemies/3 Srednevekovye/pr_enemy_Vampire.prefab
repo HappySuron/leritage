@@ -50,8 +50,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1483957391326132962, guid: c928dedb365639246b6280af40fbac45, type: 3}
       propertyPath: m_Name
-      value: pr_enemy_rat
+      value: pr_enemy_Vampire
       objectReference: {fileID: 0}
+    - target: {fileID: 5849384265932225510, guid: c928dedb365639246b6280af40fbac45, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ff838bf2253a74d45a656b7c59775a6a, type: 3}
+    - target: {fileID: 5849384265932225510, guid: c928dedb365639246b6280af40fbac45, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 190f2d5c961a82947be8b23daa816250, type: 3}
+    - target: {fileID: 5849384265932225510, guid: c928dedb365639246b6280af40fbac45, type: 3}
+      propertyPath: 'dinosaurDeathClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ac63c9309b4e6ff4f8baa290976a6069, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
