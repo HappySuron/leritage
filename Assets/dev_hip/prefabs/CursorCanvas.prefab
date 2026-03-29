@@ -123,12 +123,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9d1aff1159d5d844db417206692bfbe4, type: 3}
   - {fileID: 21300000, guid: 35a96fe3dd77b8840aad07cd72bd763e, type: 3}
   - {fileID: 21300000, guid: 8885407f29bfe4643bb9e8a51ff092cc, type: 3}
+  - {fileID: 21300000, guid: c1fc59da3ec1b994c9cbe46891e4a434, type: 3}
   grab:
   - {fileID: 21300000, guid: 461c70a6a2bd4044895f77f64d90c343, type: 3}
   - {fileID: 21300000, guid: 6e0862ec8be0ef64b918d22c9ac48efc, type: 3}
   - {fileID: 21300000, guid: ec36f128479e19a44b9c70109c4b08d6, type: 3}
   - {fileID: 21300000, guid: 66d7b51cfa4363544ad2d68e096b6a8e, type: 3}
   - {fileID: 21300000, guid: dfbafb4a8a6038140bcf5d481d203109, type: 3}
+  - {fileID: 21300000, guid: be28d9e33a21ce849bfda3ae0481f24f, type: 3}
   shiftXPercent: 0
   shiftYPercent: 0
 --- !u!1 &7114435735344203614

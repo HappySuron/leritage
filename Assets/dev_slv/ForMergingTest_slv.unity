@@ -9146,6 +9146,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2885682160754451306, guid: 49ddcc8b14301754097130cc4f080820, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885682160754451306, guid: 49ddcc8b14301754097130cc4f080820, type: 3}
+      propertyPath: 'idle.Array.data[5]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 602df7f705401ce4e8f1c349cc400e69, type: 3}
+    - target: {fileID: 2885682160754451306, guid: 49ddcc8b14301754097130cc4f080820, type: 3}
+      propertyPath: 'press.Array.data[5]'
+      value: 
+      objectReference: {fileID: 21300000, guid: e685458e91852c94fb4e51da147d9939, type: 3}
     - target: {fileID: 5094750118185281212, guid: 49ddcc8b14301754097130cc4f080820, type: 3}
       propertyPath: m_Name
       value: CanvasLeftHand
@@ -10230,6 +10242,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CursorCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1602922020732413860, guid: 72efc270e36219946b42a43326ab6c1c, type: 3}
+      propertyPath: grab.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1602922020732413860, guid: 72efc270e36219946b42a43326ab6c1c, type: 3}
+      propertyPath: open.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1602922020732413860, guid: 72efc270e36219946b42a43326ab6c1c, type: 3}
+      propertyPath: 'grab.Array.data[5]'
+      value: 
+      objectReference: {fileID: 21300000, guid: be28d9e33a21ce849bfda3ae0481f24f, type: 3}
+    - target: {fileID: 1602922020732413860, guid: 72efc270e36219946b42a43326ab6c1c, type: 3}
+      propertyPath: 'open.Array.data[5]'
+      value: 
+      objectReference: {fileID: 21300000, guid: c1fc59da3ec1b994c9cbe46891e4a434, type: 3}
     - target: {fileID: 4312276460490829187, guid: 72efc270e36219946b42a43326ab6c1c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -11513,7 +11541,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1024213568036510661, guid: 6bb5f7ce7a4d6e44e99c60e3b3f58ce7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1140797156382262593, guid: 6bb5f7ce7a4d6e44e99c60e3b3f58ce7, type: 3}
       propertyPath: m_AnchorMax.y
@@ -11545,6 +11573,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2154546839716558130, guid: 6bb5f7ce7a4d6e44e99c60e3b3f58ce7, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753072628581107892, guid: 6bb5f7ce7a4d6e44e99c60e3b3f58ce7, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3172316611184086475, guid: 6bb5f7ce7a4d6e44e99c60e3b3f58ce7, type: 3}
@@ -13022,7 +13054,6 @@ MonoBehaviour:
     - Doistoricheskiy
     - DrevniyMir
     - Srednevekovye
-    - NovyyMir
   - waveName: NovyyMir
     enemyPrefabs:
     - prefab: {fileID: 3290354863919170191, guid: abfe7771c27bf8c479f243d862832333, type: 3}
@@ -13102,11 +13133,11 @@ MonoBehaviour:
     letters: 4900540058005600
   - groupName: DrevniyMir
     letters: 4f004500430041004c00
-  - groupName: 'Srednevekovye '
+  - groupName: Srednevekovye
     letters: 4e005000500044004800
-  - groupName: 'NovyyMir '
+  - groupName: NovyyMir
     letters: 57004d00550046005900
-  - groupName: 'NoveyshiyMir '
+  - groupName: NoveyshiyMir
     letters: 530042005a004a00
   - groupName: Budushcheye
     letters: 51004b0052004700
