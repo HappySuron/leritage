@@ -96,6 +96,9 @@ public class CheckLetterKeyboard : MonoBehaviour
                     LetterData data = lettersList.Find(x => x.letter == letterPressed);
                     if (data == null || data.value < levelToLearnLetter)
                         continue;
+                    
+                    if (LeftHandMovement.Instance != null && letterVisuals.TryGetValue(letterPressed, out var visual))
+                        LeftHandMovement.Instance.MoveToPoint(visual.transform.position);
 
                     CheckLetterInFirstEnemies(letterPressed);
                 }
